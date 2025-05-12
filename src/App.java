@@ -1,5 +1,7 @@
 import javax.swing.*;
 
+//Java Project - Flappy Bird
+
 public class App {
     public static void main(String[] args) {
         int boardWidth = 360, boardHeight = 640;
@@ -10,10 +12,9 @@ public class App {
         frame.setResizable(false); //Don't allow user to resize window
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //terminate window on close
 
-        FlappyBird flappyBird = new FlappyBird();
-        frame.add(flappyBird);
+        GamePanel gamePanel = new GamePanel();
+        frame.add(gamePanel);
         frame.pack(); //Without this, the width and height would take the game window's title bar into account
-        flappyBird.requestFocus();
         frame.setVisible(true); 
     }
 }
