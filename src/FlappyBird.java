@@ -65,6 +65,7 @@ public class FlappyBird extends JPanel implements ActionListener {
     public void move(){
         //bird
         bird.y += velocityY; 
+        bird.y = Math.max(bird.y, 0); //ensure bird position can only ever be current position or top of screen
     }
 
     @Override
