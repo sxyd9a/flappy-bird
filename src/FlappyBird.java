@@ -174,6 +174,16 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) { //for all keys
         if(e.getKeyCode() == KeyEvent.VK_SPACE){ //check if pressed key is space bar
             velocityY = -9;
+            if(gameOver) {
+                //restart game via resetting conditions to defaults
+                bird.y = birdY;
+                velocityY = 0;
+                pipes.clear();
+                score = 0;
+                gameOver = false;
+                gameLoop.start();
+                placePipesTimer.start();
+            }
         }
     }
     
