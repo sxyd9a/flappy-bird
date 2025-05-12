@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
 
-public class FlappyBird extends JPanel {
+public class FlappyBird extends JPanel implements ActionListener {
     int boardWidth = 360, boardHeight = 640;
 
     //Images
@@ -29,6 +29,9 @@ public class FlappyBird extends JPanel {
 
     //game logic
     Bird bird;
+    int velocityY = -6;
+
+    Timer gameLoop;
 
     FlappyBird() {
         setPreferredSize(new Dimension(boardWidth, boardHeight));
@@ -40,6 +43,10 @@ public class FlappyBird extends JPanel {
 
         //bird
         bird = new Bird(birdImg);
+
+        //game timer
+        gameLoop = new Timer(1000/60, this); //60 fps
+        gameLoop.start();
     }
 
     public void paintComponent(Graphics g) {
@@ -53,5 +60,16 @@ public class FlappyBird extends JPanel {
 
         //bird
         g.drawImage(bird.img, bird.x, bird.y, bird.width, bird.height, null);
+    }
+
+    public void move(){
+        //bird
+        bird.y += velocityY; 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        move(); //move upwards at a rate of -6 pixels/frame
+        repaint();
     }
 }
