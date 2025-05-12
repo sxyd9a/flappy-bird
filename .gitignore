@@ -1,0 +1,15 @@
+﻿# Ignore compiled Java files
+bin/
+*.class
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.iml
+
+# Ignore library files (optional — if you re-download jars manually)
+lib/
+
+# Ignore OS clutter
+.DS_Store
+Thumbs.db
