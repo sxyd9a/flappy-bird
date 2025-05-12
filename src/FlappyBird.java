@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
 
-public class FlappyBird extends JPanel implements ActionListener {
+public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     int boardWidth = 360, boardHeight = 640;
 
     //Images
@@ -29,12 +29,17 @@ public class FlappyBird extends JPanel implements ActionListener {
 
     //game logic
     Bird bird;
-    int velocityY = -6;
+    int velocityY = 0;
+    int gravity = 1;
 
     Timer gameLoop;
 
     FlappyBird() {
         setPreferredSize(new Dimension(boardWidth, boardHeight));
+
+        //send key event to the JPanel and check key functions     
+        setFocusable(true);
+        addKeyListener(this);
 
         backgroundImg = new ImageIcon(getClass().getResource("/images/flappybirdbg.png")).getImage();
         birdImg = new ImageIcon(getClass().getResource("/images/flappybird.png")).getImage();
@@ -64,6 +69,7 @@ public class FlappyBird extends JPanel implements ActionListener {
 
     public void move(){
         //bird
+        velocityY += gravity; //account for downward force at every motion
         bird.y += velocityY; 
         bird.y = Math.max(bird.y, 0); //ensure bird position can only ever be current position or top of screen
     }
@@ -73,4 +79,18 @@ public class FlappyBird extends JPanel implements ActionListener {
         move(); //move upwards at a rate of -6 pixels/frame
         repaint();
     }
+
+    @Override
+    public void keyPressed(KeyEvent e) { //for all keys
+        if(e.getKeyCode() == KeyEvent.VK_SPACE){ //check if pressed key is space bar
+            velocityY = -9;
+        }
+    }
+    
+    @Override
+    public void keyTyped(KeyEvent e) {} //for keys labelled by a char
+
+    @Override
+    public void keyReleased(KeyEvent e) {} //press and let go of key
+    
 }

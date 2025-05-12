@@ -13,6 +13,7 @@ public class App {
         FlappyBird flappyBird = new FlappyBird();
         frame.add(flappyBird);
         frame.pack(); //Without this, the width and height would take the game window's title bar into account
+        flappyBird.requestFocus();
         frame.setVisible(true); 
     }
 }
